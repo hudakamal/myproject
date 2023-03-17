@@ -34,7 +34,6 @@
       </div>
       <div class="modal-body">
         <form name="custForm" action="" method="POST">
-        <input type="hidden" name="cust_id" id="cust_id" >
         @csrf
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
@@ -51,6 +50,14 @@
             <strong>Code:</strong>
             <input type="text" name="code" id="code" class="form-control" placeholder="Code" onchange="validate()" required>
             @error('code')
+              <span class="text-danger">{{$message}}</span>
+            @enderror              </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+            <strong>Price:</strong>
+            <input type="text" name="price" id="price" class="form-control" placeholder="price" onchange="validate()" required>
+            @error('price')
               <span class="text-danger">{{$message}}</span>
             @enderror              </div>
           </div>
@@ -71,6 +78,7 @@
       <th scope="col">Name</th>
       <th scope="col">Code</th>
       <th scope="col">Action</th>
+      <th scope="col">Book</th>
     </tr>
   </thead>
   @foreach ($flights as $flight)
@@ -80,6 +88,7 @@
     <td>{{ $flight->name }}</td>
     <td>{{ $flight->code }}</td>
     <td><a href = "{{ route('edit',$flight->id)}}"><i class="fa fa-pencil"></i></a> | <a href = 'delete/{{ $flight->id }}'><i class="fa fa-trash" style="color:red;"></a></td>
+    <td><a href= "{{ route('booking',$flight->id)}}">Booking</td>
     </tr>
     </tbody>
     @endforeach

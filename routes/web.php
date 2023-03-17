@@ -46,4 +46,12 @@ Route::post('/flight/edit/{id}','FlightController@update')->name('update');
 Route::get('delete-records','FlightController@index');
 Route::get('delete/{id}','FlightController@destroy');
 
+Route::get('/booking','BookingController@index')->name('booking');
+Route::post('/loginprocess','BookingController@store')->name('stored');
 
+//insert data customer
+Route::get('/customer','CustomerController@index')->name('customer');
+Route::post('/customers','CustomerController@store')->name('stores');
+
+//insert data flight
+Route::post('/customers/flight','BookingController@store_flight')->name('store_flight');

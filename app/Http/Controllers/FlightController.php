@@ -57,11 +57,16 @@ class FlightController extends Controller
     }
 
     public function store(Request $request){
-        //dd($request->all());
-        Flight::create([
-            'name' => $request->name,
-            'code' => $request->code,
-        ]);
+        // dd($request->all());
+        // Flight::create([
+        //     'name' => $request->input('name'),
+        //     'code' => $request->input('code'),
+        // ]);
+        $flight = new Flight;
+        $flight->name = $request->name;
+        $flight->code = $request->code;
+        $flight->price = $request->price;
+        $flight->save();
 
         return redirect('/flight');
     }
