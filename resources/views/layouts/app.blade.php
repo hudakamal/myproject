@@ -35,7 +35,7 @@
                             <a class="nav-link" href="{{ route('flight') }}">{{ __('Flight') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('booking') }}">{{ __('Booking') }}</a>
+                            <a class="nav-link" href="{{ route('history') }}">{{ __('History') }}</a>
                         </li>
                     </ul>
 

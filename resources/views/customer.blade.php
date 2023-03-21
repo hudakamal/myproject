@@ -21,9 +21,9 @@
                 <div class="card-header">{{ __('Customer Info') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('stores') }}">
+                    <form method="POST" action="{{ route('customer.store') }}">
                         @csrf
-
+                        <input type="hidden" name="booking_id" value="{{$booking->id}}">
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 

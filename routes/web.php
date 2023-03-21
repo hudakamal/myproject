@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/invoice', function () {
+    return view('invoice');
+});
 
 
 Route::get('/flight', 'FlightController@index');
@@ -47,11 +50,17 @@ Route::get('delete-records','FlightController@index');
 Route::get('delete/{id}','FlightController@destroy');
 
 Route::get('/booking','BookingController@index')->name('booking');
-Route::post('/loginprocess','BookingController@store')->name('stored');
+Route::post('/booking','BookingController@store')->name('stored');
 
 //insert data customer
 Route::get('/customer','CustomerController@index')->name('customer');
-Route::post('/customers','CustomerController@store')->name('stores');
+Route::post('/customer','CustomerController@store')->name('customer.store');
 
 //insert data flight
 Route::post('/customers/flight','BookingController@store_flight')->name('store_flight');
+
+//display data
+Route::get('/display/{id}','InvoiceController@display')->name('invoice');
+
+//history data
+Route::get('/history','InvoiceController@history')->name('history');

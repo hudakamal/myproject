@@ -31,6 +31,7 @@ class BookingController extends Controller
 
         $flight->booking()->save($booking);
 
-        return redirect()->intended('customer');
+        // return redirect()->intended('customer');
+        return view('customer',compact('booking'));
     }
 }

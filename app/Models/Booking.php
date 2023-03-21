@@ -10,11 +10,11 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-    'seatNo', 'date',
+    'seatNo', 'date', 'flight_id',
     ];
 
     public function customer() {
-        return $this->hasMany(Customer::class);
+        return $this->hasOne(Customer::class);
     }
 
        public function flight()

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Flight;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 use resources\views\layouts;
 use Illuminate\Validation\Rule;
 
@@ -15,13 +16,15 @@ class FlightController extends Controller
 {
     
     public function index(){
-        $flights = DB::select('select * from flights');
+        // $flights = DB::select('select * from flights');
+        $flights = Flight::paginate(5);
+        Paginator::useBootstrap();
         return view('flight_view',['flights'=>$flights]);    
     }
+    
     public function destroy($id) {
         DB::delete('delete from flights where id = ?',[$id]);
-        return redirect('/flight');
-        
+        return redirect()->back()->with('failed','Record successfully deleted.');        
         }
 
     public function edit($id)
@@ -45,7 +48,7 @@ class FlightController extends Controller
         $name = $request->input('name');
         $code = $request->input('code');  
         DB::update('update flights set name = ?,code=? where id = ?',[$name,$code,$id]);
-        return redirect('/flight');
+        return redirect('/flight')->with('status','Record has been updated.');   
     }
 
     protected function validator(array $data)
@@ -68,7 +71,7 @@ class FlightController extends Controller
         $flight->price = $request->price;
         $flight->save();
 
-        return redirect('/flight');
+        return redirect('/flight')->with('status','Record inserted successfully.');
     }
     
 }

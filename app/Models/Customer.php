@@ -10,11 +10,11 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
-    'name', 'age',
+    'name', 'age', 'booking_id',
     ];
 
-       public function booking()
+    public function booking()
    {
-     return $this->belongsTo(Booking::clas);
+     return $this->belongsTo(Booking::class);
    }
 }

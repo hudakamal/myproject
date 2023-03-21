@@ -14,6 +14,19 @@
     <title>Hello, world!</title>
   </head>
   <body>
+
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+      {{ session('status') }}
+    </div>
+    @endif
+
+    @if (session('failed'))
+    <div class="alert alert-danger" role="alert">
+      {{ session('failed') }}
+    </div>
+    @endif
+
   <div class="row">
 <div class="col-lg-12 margin-tb">
 <div class="pull-right">
@@ -71,29 +84,35 @@
   </div>
 </div>
 
-  <table class="table">
+  <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Code</th>
-      <th scope="col">Action</th>
+      <th scope="col">Price</th>
       <th scope="col">Book</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
-  @foreach ($flights as $flight)
+  @foreach ($flights as $key => $flight)
     <tbody>
     <tr style="border:1px solid black">
-    <td>{{ $flight->id }}</td>
+    <td>{{ $key+1 }}</td>
     <td>{{ $flight->name }}</td>
     <td>{{ $flight->code }}</td>
-    <td><a href = "{{ route('edit',$flight->id)}}"><i class="fa fa-pencil"></i></a> | <a href = 'delete/{{ $flight->id }}'><i class="fa fa-trash" style="color:red;"></a></td>
+    <td>{{ $flight->price }}</td>
     <td><a href= "{{ route('booking',$flight->id)}}">Booking</td>
+    <td><a href = "{{ route('edit',$flight->id)}}"><i class="fa fa-pencil"></i></a> | <a href = 'delete/{{ $flight->id }}'><i class="fa fa-trash" style="color:red;"></a></td>
     </tr>
     </tbody>
     @endforeach
 
 </table>
+        {{-- Pagination --}}
+        <div class="d-flex justify-content-center">
+            {!! $flights->links() !!}
+        </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

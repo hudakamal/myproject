@@ -15,10 +15,10 @@ class Flight extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'name','code','seatNo','date',
+		'name','code','price',
 	];
 
 	    public function booking() {
-        return $this->hasMany(Booking::class);
+        return $this->hasOne(Booking::class);
     }
 }
