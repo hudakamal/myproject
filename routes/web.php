@@ -24,11 +24,6 @@ Route::get('/invoice', function () {
 Route::get('/flight', 'FlightController@index');
 Route::get('/flights', 'FlightController@index');
 
-Route::get('/about',function () {
-    $nama = "Hello";
-    return view('about',compact('nama'));
-});
-
 Route::get('/flights', function () {
     return view('insert');
 });
@@ -36,9 +31,7 @@ Route::get('/flights', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/loginprocess','Auth\LoginController@loginproses')->name('loginproses');
 //insert data
-Route::get('/register','Auth\RegisterController@register')->name('register');
 Route::get('/flight','FlightController@index')->name('flight');//dekat name untuk route yang terletak di blade.php
 //edit
 Route::post('/flight','FlightController@store')->name('store');//dekat name untuk route yang terletak di blade.php
@@ -63,4 +56,10 @@ Route::post('/customers/flight','BookingController@store_flight')->name('store_f
 Route::get('/display/{id}','InvoiceController@display')->name('invoice');
 
 //history data
-Route::get('/history','InvoiceController@history')->name('history');
+Route::get('/history','HistoryController@index')->name('history');
+
+// Route::get('/users/{user}', function (\App\Models\User $user) {
+//     $id = hex2bin($user->id);
+//     // Your logic here
+// });
+

@@ -14,13 +14,14 @@
   <title>Hello, world!</title>
 </head>
 <body>
-    @if (session('status'))
-    <div class="alert alert-success" role="alert">
-      {{ session('status') }}
-    </div>
-    @endif
+  @if (session('status'))
+  <div class="alert alert-success" role="alert">
+    {{ session('status') }}
+  </div>
+  @endif
 
-    <div class="bs-example"  style="margin: 0 auto;width: 80%;">
+  <div style="margin: 0 auto;width: 80%;"><strong>ID #{{ $booking->id }}</strong></div>
+  <div class="bs-example"  style="margin: 0 auto;width: 80%;">
     <div class="d-flex justify-content-between">
       <div>{{ $booking->customer->name }}</div>
       <div>Invoice Date:{{ $booking->customer->created_at }}</div>
@@ -50,18 +51,18 @@
         <td>Tax</td>
         <td>-</td>
         <td>160</td>
-      <tr>
-        <td colspan="3" class="text-end">Total Price :</td>
-        <td>RM {{ $booking->seatNo*$booking->flight->price+160 }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="text-center">
-    <button type="button" class="btn btn-outline-success">Print</button>&nbsp
-    <button  class="btn btn-success text " >
-      Save
-    </button>
-  </div>
-</body>
-</html>
-@endsection
+        <tr>
+          <td colspan="3" class="text-end">Total Price :</td>
+          <td>RM {{ $booking->seatNo*$booking->flight->price+160 }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <button type="button" class="btn btn-outline-success">Print</button>&nbsp
+      <button  class="btn btn-success text " onclick="window.location='{{ URL::route('flight'); }}'">
+        Save
+      </button>
+    </div>
+  </body>
+  </html>
+  @endsection

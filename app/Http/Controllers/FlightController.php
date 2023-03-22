@@ -25,7 +25,7 @@ class FlightController extends Controller
     public function destroy($id) {
         DB::delete('delete from flights where id = ?',[$id]);
         return redirect()->back()->with('failed','Record successfully deleted.');        
-        }
+    }
 
     public function edit($id)
     {

@@ -20,9 +20,9 @@ class InvoiceController extends Controller
     // $customers = DB::table('customers')->latest('id')->first();
     // $customers = DB::table('customers')->orderBy('id','DESC')->first();
     // dd($customers);
-    $booking = Booking::find($id);
+        $booking = Booking::find($id);
     // dd($booking->flight);    
-    return view('invoice',compact('booking'));
+        return view('invoice',compact('booking'));
 
     }
 }
