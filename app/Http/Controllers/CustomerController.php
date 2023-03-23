@@ -32,8 +32,9 @@ class CustomerController extends Controller
         // $flight = Flight->find($request->flight);
 
         $booking->customer()->save($customer);
-        $id = $booking->id; // the booking ID to encrypt
-        $encryptedId = encrypt($id);
+        $id = $booking->id; 
+        $hashids = new Hashids('my_salt_value', 6); // initialize the Hashids object with a salt value and a minimum hash length of 6
+        $encryptedId = $hashids->encode($id);
         return redirect('display/'.$encryptedId)->with('status','Successfully'); 
     }
 }

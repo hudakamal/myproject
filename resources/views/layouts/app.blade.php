@@ -61,12 +61,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href=""
+                                    <a class="dropdown-item" href="{{ route('profile') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('profile-form').submit();">
                                         {{ __('Profile') }}
                                     </a>
-                                    <form id="profile-form" action="" method="POST" class="d-none">
+                                    <form id="profile-form" action="{{ route('profile') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

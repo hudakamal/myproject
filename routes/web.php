@@ -58,8 +58,5 @@ Route::get('/display/{id}','InvoiceController@display')->name('invoice');
 //history data
 Route::get('/history','HistoryController@index')->name('history');
 
-// Route::get('/users/{user}', function (\App\Models\User $user) {
-//     $id = hex2bin($user->id);
-//     // Your logic here
-// });
-
+//show user profile
+Route::match(['get', 'post'], '/profile', 'ProfileController@index')->name('profile');

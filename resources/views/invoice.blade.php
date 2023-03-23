@@ -58,7 +58,7 @@
       </tbody>
     </table>
     <div class="text-center">
-      <button type="button" class="btn btn-outline-success">Print</button>&nbsp
+      <button type="button" class="btn btn-outline-success" onclick="window.print()" >Print</button>&nbsp
       <button  class="btn btn-success text " onclick="window.location='{{ URL::route('flight'); }}'">
         Save
       </button>
