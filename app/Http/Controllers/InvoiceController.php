@@ -15,11 +15,12 @@ class InvoiceController extends Controller
 
     }
 
-    public function display($id){
+    public function display($encryptedId){
         // dd($id);
     // $customers = DB::table('customers')->latest('id')->first();
     // $customers = DB::table('customers')->orderBy('id','DESC')->first();
     // dd($customers);
+        $id = decrypt($encryptedId);
         $booking = Booking::find($id);
     // dd($booking->flight);    
         return view('invoice',compact('booking'));

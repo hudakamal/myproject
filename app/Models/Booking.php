@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +12,7 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-    'seatNo', 'date', 'flight_id',
+    'seatNo', 'date', 'flight_id', ''
     ];
 
     public function customer() {

@@ -39,9 +39,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
                         
-                Route::bind('user', function ($value) {
-                    return App\Models\User::where('id', hash('sha256', $value))->firstOrFail();
-                });
         });
 
     }
