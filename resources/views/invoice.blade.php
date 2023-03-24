@@ -19,54 +19,63 @@
   </div>
   @endif
 
-  <div style="margin: 0 auto;width: 80%;"><strong>ID #{{ $booking->id }}</strong></div>
-  <div class="bs-example"  style="margin: 0 auto;width: 80%;">
-    <div class="d-flex justify-content-between">
-      <div>{{ $booking->customer->name }}</div>
-      <div>Invoice Date:{{ $booking->customer->created_at }}</div>
+  <div class="card">
+  <div class="card-body mx-4">
+    <div class="container">
+      <p class="my-5 mx-5 text-center" style="font-size: 30px;">Thank for your purchase</p>
+      <div class="row">
+        <ul class="list-unstyled">
+          <li class="text-black">{{ $booking->customer->name }}</li>
+          <li class="text-muted mt-1"><span class="text-black">Invoice</span> #{{ $booking->id }}</li>
+          <li class="text-black mt-1">{{ $booking->created_at_formatted }}</li>
+        </ul>
+        <hr>
+        <div class="col-xl-10">
+          <p>{{ $booking->flight->name }}</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">RM {{ $booking->seatNo*$booking->flight->price }}
+          </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Service Tax</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">RM 160
+          </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Surcharge</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">RM 300
+          </p>
+        </div>
+        <hr style="border: 2px solid black;">
+      </div>
+      <div class="row text-black">
+
+        <div class="col-xl-12">
+          <p class="float-end fw-bold">Total: RM {{ ($booking->seatNo*$booking->flight->price)+160+300 }}
+          </p>
+        </div>
+        <hr style="border: 2px solid black;">
+      </div>
+      <div class="text-center" style="margin-top: 90px;">
+        <u class="text-info">    <button type="button" class="btn btn-outline-primary" onclick="window.print()">Print File</button></u>
+        <p>Enjoy your trip to {{ $booking->flight->name }},Have Fun!!</p>
+      </div>
+
     </div>
-  </div>
-
-
-  <br>
-  <table class="table dt-responsive nowrap">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Seat No</th>
-        <th scope="col">Price</th>
-      </tr><!--NURUL HUDA ALIYA BINTI MOHD KAMAL huda_aliya-->
-    </thead>
-    <tbody>   
-      <tr>
-        <th scope="row">1</th>
-        <td>{{ $booking->flight->name }}</td>
-        <td>{{ $booking->seatNo }}</td>
-        <td>{{ $booking->seatNo*$booking->flight->price }}</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Tax</td>
-        <td>-</td>
-        <td>160</td>
-        <tr>
-          <td colspan="3" class="text-end">Total Price :</td>
-          <td>RM {{ $booking->seatNo*$booking->flight->price+160 }}</td>
-        </tr>
-      </tbody>
-  </table>
-
-  <div class="input-group col-md-3">
-  <input type="text" class="form-control" id="file" name="file" value="{{ $booking->file_path }}" readonly>
-  <div class="input-group-append">
-    <a href="{{ asset('storage/receipt/booking/'.$booking->file_path) }}"><button class="btn btn-outline-secondary" type="button">Open File</button></a>
   </div>
 </div>
 
-  <div class="text-center">
-    <button type="button" class="btn btn-outline-success" onclick="window.print()" >Print</button>
-  </div>
 </body>
 </html>
   @endsection

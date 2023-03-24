@@ -40,12 +40,37 @@
         <p class="mb-1">Total Price:<br>
           RM {{ $booking->seatNo*$booking->flight->price }}<br>
         </p>
-        <p class="mb-1"><a href="{{ asset('storage/receipt/booking/'.$booking->file_path) }}"><i class="fa fa-paperclip"></i>&nbsp{{ $booking->file_path }}</a></p>
-      </form>
-      @endforeach
+              </form>
 
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $booking->id }}">
+    {{ $booking->file_path }}
+  </button>
+    <div class="modal fade" id="exampleModal{{ $booking->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="exampleModalLabel">PDF</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+      <iframe
+      src="{{ asset('storage/receipt/booking/'.$booking->file_path) }}"
+      frameBorder="0"
+      scrolling="auto"
+      height="350px"
+      width="100%"
+  ></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
+@endforeach
+    </div>
+  </div>
+
 
 
 </body>

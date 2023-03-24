@@ -6,6 +6,7 @@ use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Booking extends Model
 {
@@ -26,5 +27,10 @@ class Booking extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function getCreatedAtFormattedAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
     }
 }
