@@ -26,7 +26,7 @@
     </div>
     <div class="list-group">
       @foreach ($bookings as $booking)
-      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <form class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">ID #{{$booking->id}} - {{$booking->flight?->name}}</h5>
           <small>{{$booking->created_at}}</small>
@@ -40,9 +40,10 @@
         <p class="mb-1">Total Price:<br>
           RM {{ $booking->seatNo*$booking->flight->price }}<br>
         </p>
-        <!-- <small>Donec id elit non mi porta.</small> -->
-      </a>
+        <p class="mb-1"><a href="{{ asset('storage/receipt/booking/'.$booking->file_path) }}"><i class="fa fa-paperclip"></i>&nbsp{{ $booking->file_path }}</a></p>
+      </form>
       @endforeach
+
     </div>
   </div>
 

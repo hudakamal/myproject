@@ -60,3 +60,5 @@ Route::get('/history','HistoryController@index')->name('history');
 
 //show user profile
 Route::match(['get', 'post'], '/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile/edit','ProfileController@update')->name('update');
+Route::put('/profile/edit/{user}','ProfileController@edit')->name('edit');

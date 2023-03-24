@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Flight;
@@ -14,10 +15,6 @@ use App\Models\User;
 class BookingController extends Controller
 {
     public function index(){
-        $hid = hash('sha256', 40);
-        // dd($hid);
-        $hex2bin = hex2bin(40);
-        // dd($hex2bin);
         $flights = Flight::orderBy('name','asc')->get();
         return view('booking',compact('flights'));
     }
@@ -36,6 +33,20 @@ class BookingController extends Controller
         $booking->date = $request->date;
         $booking->user_id = $user->id;
 
+        if($request->hasFile('file_path'))
+        {
+            $destination_path = 'public/receipt/booking';
+            $image = $request->file('file_path');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('file_path')->storeAs($destination_path,$image_name);
+            $booking['file_path'] = $image_name;
+            // dd('/public/receipt/booking/'.$booking->file_path);
+        }
+
+        // Define the file path
+
+        // Store the file in the specified file path
+        
 
 
         // $flight = Flight->find($request->flight);

@@ -18,26 +18,29 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">{{ __('Profile') }}
-                  <small><a href="{{ route('update') }}" class="text-secondary"><i class="fa fa-pencil"></i>Edit</a></small>
+                <div class="card-header d-flex justify-content-between">{{ __('Edit Profile') }}
                 </div>
 
                 <div class="card-body">
-                  @if ($message = Session::get('success'))
-                  <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                  </div>
-                  @endif
-                    <form>
+                    <form method="post" action="{{ route('edit', ['user' => Auth::id()]) }}">
+                        @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="name" class="form-label">{{ __('Name') }}</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" readonly>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">{{ __('Email') }}</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                         </div>
                         <!-- Add more fields as needed -->
+                        <div class="row mb-0">
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Update') }}
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

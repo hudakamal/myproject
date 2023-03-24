@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use Hashids\Hashids;
 use App\Models\Booking;
@@ -34,7 +35,6 @@ class InvoiceController extends Controller
         // Error handling if the booking model does not exist
         return abort(404);
     }
-    // dd($booking->flight);    
     return view('invoice',compact('booking'));
 
 }

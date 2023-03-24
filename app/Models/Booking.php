@@ -12,7 +12,7 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-    'seatNo', 'date', 'flight_id', ''
+    'seatNo', 'date', 'flight_id', 'file_path'
     ];
 
     public function customer() {

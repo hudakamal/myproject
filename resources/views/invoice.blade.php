@@ -10,7 +10,6 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
   <title>Hello, world!</title>
 </head>
 <body>
@@ -56,13 +55,18 @@
           <td>RM {{ $booking->seatNo*$booking->flight->price+160 }}</td>
         </tr>
       </tbody>
-    </table>
-    <div class="text-center">
-      <button type="button" class="btn btn-outline-success" onclick="window.print()" >Print</button>&nbsp
-      <button  class="btn btn-success text " onclick="window.location='{{ URL::route('flight'); }}'">
-        Save
-      </button>
-    </div>
-  </body>
-  </html>
+  </table>
+
+  <div class="input-group col-md-3">
+  <input type="text" class="form-control" id="file" name="file" value="{{ $booking->file_path }}" readonly>
+  <div class="input-group-append">
+    <a href="{{ asset('storage/receipt/booking/'.$booking->file_path) }}"><button class="btn btn-outline-secondary" type="button">Open File</button></a>
+  </div>
+</div>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-outline-success" onclick="window.print()" >Print</button>
+  </div>
+</body>
+</html>
   @endsection

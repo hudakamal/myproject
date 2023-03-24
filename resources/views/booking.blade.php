@@ -21,7 +21,7 @@
                 <div class="card-header">{{ __('Flight Info') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('stored') }}">
+                    <form method="POST" action="{{ route('stored') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -63,6 +63,19 @@
                                 <input id="no" type="text" class="form-control @error('no') is-invalid @enderror" name="no" required autocomplete="current-password">
 
                                 @error('no')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="file_path" class="col-md-4 col-form-label text-md-end">{{ __('Select file') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="file_path" type="file" class="form-control @error('file_path') is-invalid @enderror" name="file_path" accept="application/pdf" required>
+
+                                @error('file_path')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
