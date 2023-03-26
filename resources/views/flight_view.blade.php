@@ -83,7 +83,6 @@
       </div>
     </div>
   </div>
-
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>

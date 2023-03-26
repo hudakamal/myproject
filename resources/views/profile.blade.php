@@ -16,6 +16,11 @@
 <body>
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-md-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" height="250" width="250" src="@if($user->avatar_path == null) {{ asset('storage/avatars/default-avatar.jpg') }}  @else {{ asset('storage/avatars/'.$user->avatar_path) }} @endif" id="image_preview_container">
+            </div>
+        </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">{{ __('Profile') }}

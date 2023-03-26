@@ -16,7 +16,7 @@ use Illuminate\Validation\Rule;
 class FlightController extends Controller
 {
     
-    public function index(){
+    public function index(Request $request){
         // $flights = DB::select('select * from flights');
         $flights = Flight::paginate(5);
         Paginator::useBootstrap();
