@@ -33,22 +33,13 @@ class BookingController extends Controller
         $booking->date = $request->date;
         $booking->user_id = $user->id;
 
-        if($request->hasFile('avatar_path'))
-        {
-            $destination_path = 'public/avatars';
-            $image = $request->file('avatar_path');
+        if ($request->hasFile('file_path')) {
+            $destination_path = 'public/receipt/booking';
+            $image = $request->file('file_path');
             $image_name = $image->getClientOriginalName();
-            $path = $request->file('avatar_path')->storeAs($destination_path,$image_name);
+            $path = $request->file('file_path')->storeAs($destination_path,$image_name);
 
-            $booking = Booking::find($id); // assuming you have a variable $id containing the ID of the booking to be updated
-            $old_avatar_path = $booking->avatar_path;
-
-            // update the booking with the new file path
-            $booking->avatar_path = $image_name;
-            $booking->save();
-
-            // delete the old file
-            Storage::delete($destination_path.'/'.$old_avatar_path);
+            $booking['file_path'] = $image_name;
         }
 
 

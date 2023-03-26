@@ -31,7 +31,7 @@
                 <div class="card-body">  
                         <div class="mb-3">
                             <label for="avatar_path" class="form-label">{{ __('Avatar') }}</label>
-                            <input id="avatar_path" type="file" class="form-control @error('success') is-invalid @enderror" name="avatar_path" value="{{ old('avatar_path') }}" required autocomplete="avatar_path">
+                            <input id="avatar_path" type="file" class="form-control @error('success') is-invalid @enderror" name="avatar_path" value="{{ old('avatar_path') }}" autocomplete="avatar_path">
   
                                 @error('success')
                                     <span class="invalid-feedback" role="alert">
