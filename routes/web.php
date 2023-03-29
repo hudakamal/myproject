@@ -35,8 +35,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/flight','FlightController@index')->name('flight');//dekat name untuk route yang terletak di blade.php
 //edit
 Route::post('/flight','FlightController@store')->name('store');//dekat name untuk route yang terletak di blade.php
-Route::get('/flight/edit/{id}','FlightController@edit')->name('edit');
-Route::post('/flight/edit/{id}','FlightController@update')->name('update');
+// Route::get('/flight/edit/{id}','FlightController@edit')->name('edit');
+Route::post('/flight/update','FlightController@update');
 
 //delete
 Route::get('delete-records','FlightController@index');
@@ -60,5 +60,5 @@ Route::get('/history','HistoryController@index')->name('history');
 
 //show user profile
 Route::match(['get', 'post'], '/profile', 'ProfileController@index')->name('profile');
-Route::get('/profile/edit','ProfileController@update')->name('update');
-Route::post('/profile/edit','ProfileController@edit')->name('edit');
+Route::get('/profile/edit','ProfileController@update')->name('profile.update');
+Route::post('/profile/edit','ProfileController@edit')->name('profile.edit');

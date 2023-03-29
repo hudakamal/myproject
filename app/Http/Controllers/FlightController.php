@@ -17,9 +17,9 @@ class FlightController extends Controller
 {
     
     public function index(Request $request){
-        // $flights = DB::select('select * from flights');
-        $flights = Flight::paginate(5);
-        Paginator::useBootstrap();
+        $flights = DB::select('select * from flights');
+        // $id = $request->id;
+        // $flights = Flight::find($id);
         return view('flight_view',['flights'=>$flights]);    
     }
     
@@ -44,13 +44,15 @@ class FlightController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->input('id');
         $name = $request->input('name');
         $code = $request->input('code');  
         DB::update('update flights set name = ?,code=? where id = ?',[$name,$code,$id]);
-        return redirect('/flight')->with('status','Record has been updated.');   
+        return redirect('/flight')->with('status','Record has been updated.');
     }
+
 
     protected function validator(array $data)
     {

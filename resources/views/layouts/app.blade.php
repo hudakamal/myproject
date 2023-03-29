@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -13,7 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
+    @stack('css')
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -32,10 +33,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('flight') }}">{{ __('Flight') }}</a>
+                            <a class="nav-link {{ request()->is('flight*') ? 'active' : '' }}" href="{{ route('flight') }}">{{ __('Flight') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('history') }}">{{ __('History') }}</a>
+                            <a class="nav-link {{ request()->is('history*') ? 'active' : '' }}" href="{{ route('history') }}">{{ __('History') }}</a>
                         </li>
                     </ul>
 
@@ -43,52 +44,54 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     <img src="@if(Auth::user()->avatar_path == null) {{ asset('storage/avatars/default-avatar.jpg') }}  @else {{ asset('storage/avatars/'.Auth::user()->avatar_path) }} @endif" class="rounded-circle" style="width: 30px;">
-                                    {{ Auth::user()->name }}
-                                </a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                             <img src="@if(Auth::user()->avatar_path == null) {{ asset('storage/avatars/default-avatar.jpg') }}  @else {{ asset('storage/avatars/'.Auth::user()->avatar_path) }} @endif" class="rounded-circle" style="width: 30px;">
+                             {{ Auth::user()->name }}
+                         </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('profile-form').submit();"><i class="fa fa-user"></i>
-                                        {{ __('Profile') }}
-                                    </a>
-                                    <form id="profile-form" action="{{ route('profile') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i>
-                                        {{ __('Logout') }}
-                                    </a>
+                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('profile') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('profile-form').submit();"><i class="fa fa-user"></i>
+                            {{ __('Profile') }}
+                        </a>
+                        <form id="profile-form" action="{{ route('profile') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                        {{ __('Logout') }}
+                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+            </li>
+            @endguest
+        </ul>
     </div>
+</div>
+</nav>
+
+<main class="py-4">
+    @yield('content')
+</main>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@stack('js')
 </body>
 </html>

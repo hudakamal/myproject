@@ -1,25 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<!doctype html>
-<html lang="en">
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <title>Hello, world!</title>
-</head>
-<body>
-    <form method="post" action="{{ route('edit', ['user' => Auth::id()]) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('profile.edit', ['user' => Auth::id()]) }}" enctype="multipart/form-data">
         @csrf
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <div class="d-flex flex-column align-items-center text-center p-3">
                 <img class="rounded-circle mt-5" height="250" width="250" src="@if($user->avatar_path == null) {{ asset('storage/avatars/default-avatar.jpg') }}  @else {{ asset('storage/avatars/'.$user->avatar_path) }} @endif" id="image_preview_container">
             </div>
         </div>
@@ -61,7 +48,4 @@
         </div>
     </div>
 </form>
-
-</body>
-</html>
 @endsection
