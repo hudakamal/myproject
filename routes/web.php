@@ -40,7 +40,7 @@ Route::post('/flight/update','FlightController@update');
 
 //delete
 Route::get('delete-records','FlightController@index');
-Route::get('delete/{id}','FlightController@destroy');
+Route::delete('/flight/{id}', 'UserController@destroy')->name('flight.destroy');
 
 Route::get('/booking','BookingController@index')->name('booking');
 Route::post('/booking','BookingController@store')->name('stored');

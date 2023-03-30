@@ -202,7 +202,8 @@
           success: function(response) {
               // Handle success response
             var modalId = "#myModalTest";
-            $(modalId).modal("hide");          
+            $(modalId).modal("hide");
+            setInterval('location.reload()', 1000);       
           },
           error: function(jqXHR, textStatus, errorThrown) {
             alert("please try again");        
@@ -221,9 +222,9 @@
           success: function(response) {
               // Handle success response
             var modalId = "#exampleModal";
-
               // Close modal
             $(modalId).modal("hide");
+            setInterval('location.reload()', 1000);       
           },
           error: function(jqXHR, textStatus, errorThrown) {
             alert("please try again");        

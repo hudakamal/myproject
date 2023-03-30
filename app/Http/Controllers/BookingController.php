@@ -28,6 +28,15 @@ class BookingController extends Controller
         $user = User::find($id);
         // dd($user->all());
 
+        $validationRules = [
+        'flight' => 'required',
+        'date' => 'required',
+        'no' => 'required',
+        'file_path' => 'required|mimes:pdf',
+    ];
+
+        $request->validate($validationRules);
+
         $booking = new Booking();
         $booking->seatNo = $request->no;
         $booking->date = $request->date;
@@ -47,7 +56,6 @@ class BookingController extends Controller
 
         $flight->booking()->save($booking);
         $user->bookings()->save($booking);
-        // return redirect()->intended('customer');
-        return view('customer',compact('booking'));
+        return view('customer',compact('booking','validationRules'));
     }
 }
